@@ -51,7 +51,7 @@ These operations define a functor $y_{sv}:\mathcal{C}^{op}\to \mathsf{Poset}$ fr
 Sieves will now take the place of coverings by open sets in our definition of a sheaf. In this way we can define a topology on a category.
 
 >[!def] Grothendieck Topology
->A \textbf{Grothendieck topology} on a category $\mathcal{C}$ consists of a functor $J:\mathcal{C}\to \mathsf{Poset}$ such that for each $C \in \mathcal{C}_0$, $J(C) \subseteq \mathsf{Sieve}(C)$ is a sub-poset of the sieve poset with induced maps such that the following hold:
+>A **Grothendieck topology** on a category $\mathcal{C}$ consists of a functor $J:\mathcal{C}\to \mathsf{Poset}$ such that for each $C \in \mathcal{C}_0$, $J(C) \subseteq \mathsf{Sieve}(C)$ is a sub-poset of the sieve poset with induced maps such that the following hold:
 >1. (Maximality) $y_C \in J(C)$ for all $C \in \mathcal{C}_0$
 >2. (Transitivity) if $S \in J(C)$ and $R \subseteq y_C$ such that for any $h:D\to C$ in $S$, $h^*(R) \in J(D)$, then $R \in J(C)$
 >

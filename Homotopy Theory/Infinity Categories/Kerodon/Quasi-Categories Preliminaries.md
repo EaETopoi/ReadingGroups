@@ -162,14 +162,29 @@ We know what degenerate 1-simplices look like (identities), but what about degen
 
 >[!example] Degenerate 2-Simplices
 >Let $S_\bullet$ be a simplicial object of $\mathcal{C}$ and $\sigma$ a $2$-simplex in $S_\bullet$.  We say $\sigma$ is **left-degenerate** if it is of the form $s_0^1(e)$ for some edge $e:x\to y$, and **right-degenerate** if it is of the form $s_1^1(e)$ for some edge $e:x\to y$. Using our identities we can describe these $2$-simplices diagrammatically as
+>
 ><p align="center"><img align="center"src="https://i.upmath.me/svg/%0A%5Cbegin%7Btikzcd%7D%5Bwhite%5D%0A%09%26%20x%20%26%26%26%20y%20%5C%5C%0A%09x%20%26%26%20y%20%26%20x%20%26%26%20y%0A%09%5Carrow%5B%22e%22%2C%20from%3D1-2%2C%20to%3D2-3%5D%0A%09%5Carrow%5BRightarrow%2C%20no%20head%2C%20from%3D1-5%2C%20to%3D2-6%5D%0A%09%5Carrow%5BRightarrow%2C%20no%20head%2C%20from%3D2-1%2C%20to%3D1-2%5D%0A%09%5Carrow%5B%22e%22'%2C%20from%3D2-1%2C%20to%3D2-3%5D%0A%09%5Carrow%5B%22e%22%2C%20from%3D2-4%2C%20to%3D1-5%5D%0A%09%5Carrow%5B%22e%22'%2C%20from%3D2-4%2C%20to%3D2-6%5D%0A%5Cend%7Btikzcd%7D%0A" alt="\begin{tikzcd}[white]&amp; x &amp;&amp;&amp; y \\x &amp;&amp; y &amp; x &amp;&amp; y\arrow[&quot;e&quot;, from=1-2, to=2-3]\arrow[Rightarrow, no head, from=1-5, to=2-6]\arrow[Rightarrow, no head, from=2-1, to=1-2]\arrow[&quot;e&quot;', from=2-1, to=2-3]\arrow[&quot;e&quot;, from=2-4, to=1-5]\arrow[&quot;e&quot;', from=2-4, to=2-6]\end{tikzcd}" /></p>
+>
 >respectively.
 
 ### Dimension
 
 We've talked a lot about degeneracy of individual simplices up to this point. We can also talk about how this might effect a simplicial object itself. We say that $S_\bullet$ has **dimension $\leq k$** if for $n> k$, every $n$-simplex of $S_\bullet$ is degenerate. If $S_\bullet$ has dimension $\leq k$ but not dimension $\leq k-1$, then we say that $S_\bullet$ has **dimension $k$**. If such a finite $k$ exists we say that $S_\bullet$ is **finite-dimensional**.
 
-It follows easily that epimorphisms are non-increasing in dimension while monomorphisms are non-decreasing in dimension. Further, coproducts and products behave well with dimension. It is easy to see that the dimension of a coproduct is simply the supremum of the dimensions of the pieces. On the other hand, dimensions sum under products.
+It follows easily that epimorphisms are non-increasing in dimension while monomorphisms are non-decreasing in dimension. Further, coproducts and products behave well with dimension. It is easy to see that the dimension of a coproduct is simply the supremum of the dimensions of the pieces. On the other hand, dimensions sum under products.  We begin by characterizing non-degenerate cells in $\Delta^n\times\Delta^m$. Note that a $k$ simplex in $\Delta^n\times \Delta^m$ is a pair of non-decreasing maps $f:[k]\to [n]$ and $g:[k]\to [m]$. These pair of maps are equivalent to a map $\langle f,g\rangle:[k]\to [n]\times [m]$, where $[n]\times[m]$ is the product in $\text{Poset}$ with product ordering. Indeed, we have natural projections $[n]\times [m]\to [n]$ and $[n]\times [m]\to [m]$ since $(a,b)\leq (c,d)$ if and only if $a\leq c$ and $b \leq d$.
+
+>[!proposition] Product of Standard Simplices
+>The non-degenerate simplices of $\Delta^n\times \Delta^m$ correspond to those $\sigma:\Delta^{n+m}\to \Delta^n\times \Delta^m$ such that the corresponding map of partially ordered sets $[n+m]\to [n]\times [m]$ is strictly monotone.
+
+^6fc0d8
+
+`\begin{proof}`
+First let us show that if $k > n+m$, then any $k$-simplex is degenerate. Let $f:[k]\to [n]\times [m]$ be a $k$-simplex. Then we obtain $k$-simplices $f_1:[k]\to [n]$ and $f_2:[k]\to [m]$. Now we must have that there are at least $k-n$ $0\leq i < k$'s such that $f_1(i) = f_1(i+1)$ as well as $k-m$ such $i$s with $f_2(i)=f_2(i+1)$. Since $2k-n-m > k$, by assumption, the Pigeon Hole principle guarantees the existence of a $0 \leq i < k$ such that $f_1(i) = f_1(i+1)$ and $f_2(i) = f_2(i+1)$. Then $f(i) = f(i+1)$, and so we have some $f':[k-1]\to [n]\times [m]$ such that $f = f' \circ \eta_i^{k-1}$. Thus, $f$ is a degenerate simplex.
+
+The above argument also shows that $f$ is a non-degenerate simplex if and only if it is a monomorphism of partially ordered sets (or equivalently is injective). Then $f:[n+m]\to [n]\times [m]$ is non-degenerate if and only if for each $0 \leq i < n+m$, $f(i) < f(i+1)$. This is equivalent to the statement that for each $0 \leq i < n+m$, if $f(i) = (a,b)$, then $f(i+1)$ is either $(a+1,b)$ or $(a,b+1)$.
+
+Now, suppose $g:[p]\to [n]\times [m]$ is a non-degenerate simplex, so in particular $p \leq n+m$. Then $g$ corresponds to some sequence $(a_0,b_0),(a_1,b_1),...,(a_p,b_p)$. Since $(a_0,b_0) < (a_1,b_1) < \cdots < (a_p,b_p)$, we have a sequence $(0,0) < (k_1,\ell_1) < \cdots < (k_{n+m-1},\ell_{n+m-1}) < (n,m)$ which contains $(a_0,b_0) < \cdots < (a_p,b_p)$ as a subsequence and increases by $1$ in one component at each step. In other words, we find that $g$ is a $p$-face of a $(n+m)$-simplex.
+`\end{proof}`
 
 >[!proposition] Dimension Sum
 >Let $S_\bullet$ and $T_\bullet$ be simplicial sets with dimensions $k$ and $\ell$, respectively. Then $S_\bullet\times T_\bullet$ has dimension $k+\ell$.
@@ -179,7 +194,7 @@ We will prove the claim via a pair of inequalities. First, let $\sigma = (\sigma
 $$
 \Delta^n\xrightarrow{(\alpha_{S},\alpha_{T})}\Delta^{n_{S}}\times \Delta^{n_{T}}\xrightarrow{\tau_{S}\times \tau_{T}}S_{\bullet}\times T_{\bullet}
 $$
-The non-degeneracy of $\sigma$ implies that $(\alpha_S,\alpha_T)$ is a monomorphism. The associated map of partially ordered sets, $[n]\to [n_S]\times [n_T]$, is hence a monomorphism, where this map has the lexicographic order. The image must be a linearly ordered subset of $[n_S]\times [n_T]$. But the largest subset is of size $n_S+n_T \leq k+\ell$ which can be seen by visualizing a $n_S\times n_T$ grid and considering paths that start in the bottom left corner and can only move up and to the right with each move. Finally, if we take $n = k+\ell$ with $\tau_S$ and $\tau_T$ non-degenerate $k$ and $\ell$ simplices, respectively, than the previous observation implies that the composite is exactly a $k+\ell = n$ simplex.
+The non-degeneracy of $\sigma$ implies that $(\alpha_S,\alpha_T)$ is a monomorphism. The associated map of partially ordered sets, $[n]\to [n_S]\times [n_T]$, is hence a monomorphism, where $[n_S]\times [n_T]$ has the product order. The image must be a linearly ordered subset of $[n_S]\times [n_T]$. But the largest subset is of size $n_S+n_T \leq k+\ell$ which can be seen by visualizing a $n_S\times n_T$ grid and considering paths that start in the bottom left corner and can only move up and to the right with each move. Finally, if we take $n = k+\ell$ with $\tau_S$ and $\tau_T$ non-degenerate $k$ and $\ell$ simplices, respectively, than the previous observation implies that the composite is exactly a $k+\ell = n$ simplex.
 `\end{proof}`
 
 >[!example]
@@ -214,6 +229,7 @@ As with any functor into $\mathsf{Set}$ (and more generally into $\mathsf{Cat}$)
 
 >[!def] Grothendieck Construction
 >The **Grothendieck construction** for a pseudofunctor $F:\mathbb{C}\to \mathsf{Cat}_2$ is then the strict 2-pullback $p:\int_\mathbb{C}F\to \mathbb{C}$ of $\mathsf{Cat}_{*,\ell}\to \mathsf{Cat}_2$ along $F$ 
+>
 ><p align="center"><img align="center"src="https://i.upmath.me/svg/%0A%5Cbegin%7Btikzcd%7D%5Bwhite%5D%0A%09%7B%5Cint_%5Cmathbb%7BC%7DF%7D%20%26%20%7B%5Cmathsf%7BCat%7D_%7B*%2C%5Cell%7D%7D%20%5C%5C%0A%09%7B%5Cmathbb%7BC%7D%7D%20%26%20%7B%5Cmathsf%7BCat%7D_2%7D%0A%09%5Carrow%5Bfrom%3D1-1%2C%20to%3D1-2%5D%0A%09%5Carrow%5B%22p%22'%2C%20from%3D1-1%2C%20to%3D2-1%5D%0A%09%5Carrow%5B%22%5Clrcorner%22%7Banchor%3Dcenter%2C%20pos%3D0.125%7D%2C%20draw%3Dnone%2C%20from%3D1-1%2C%20to%3D2-2%5D%0A%09%5Carrow%5Bfrom%3D1-2%2C%20to%3D2-2%5D%0A%09%5Carrow%5B%22F%22'%2C%20from%3D2-1%2C%20to%3D2-2%5D%0A%5Cend%7Btikzcd%7D%0A" alt="\begin{tikzcd}[white]{\int_\mathbb{C}F} &amp; {\mathsf{Cat}_{*,\ell}} \\{\mathbb{C}} &amp; {\mathsf{Cat}_2}\arrow[from=1-1, to=1-2]\arrow[&quot;p&quot;', from=1-1, to=2-1]\arrow[&quot;\lrcorner&quot;{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]\arrow[from=1-2, to=2-2]\arrow[&quot;F&quot;', from=2-1, to=2-2]\end{tikzcd}" /></p>
 >
 >Explicitly, $\int_\mathbb{C}F$ can be realized as a category with objects being pairs of functors $c:*\to \mathbb{C}$ with natural transformations $a:*\Rightarrow F\circ c$, which can be thought of as object of $\mathbb{C}$ together with an object of $F(c)$. A morphism in the category between pairs $(c,a)$ and $(c',a')$ is given by a pair of a natural transformation $f:c\Rightarrow c'$ (i.e. a map in $\mathbb{C}$) together with a natural transformation $\Phi:F(f)\circ a\Rightarrow a'$.
@@ -290,6 +306,8 @@ Now, for $S_\bullet$ a simplicial set, let $S_n^{nd}$ denote the set of non-dege
 >Let $S_\bullet$ be a simplicial set and let $k \geq 0$. Then we have a pushout
 >$$\begin{CD} \coprod_{\sigma\in S_k^{nd}}\partial\Delta^k @>>> \text{sk}_{k-1}(S_\bullet) \\ @VVV @VVV \\ \coprod_{\sigma \in S_k^{nd}}\Delta^k @>>> \text{sk}_k(S_\bullet)\end{CD}$$
 >in $\mathsf{Set}^{\mathbb{\Delta}^{op}}$.
+
+^4a1ee9
 
 `\begin{proof}`
 The lemma follows concretely from our [[Quasi-Categories Preliminaries#^88170c|unique factorization of simplices]]. We can also proceed formally using our coend calculus **LOOK AT RIEHL CATEGORICAL HOMOTOPY THEORY OR RIEHL VERITY THEORY AND PRACTICE OF REEDY CATEGORIES**
@@ -387,6 +405,24 @@ Since $\text{Gr}$ preserves limits and co-limits and maps out of this equalizer 
 Note that the inclusion $\iota:(1\rightrightarrows 2)\to \mathbb{\Delta}$ is that of a full-subcategory. Thus, by [[Kan Extensions#^90826e]] we have that the natural transformation $\alpha:1_{\mathsf{Graph}}\Rightarrow\iota^*\text{Lan}_\iota$ can be given by the identity, or at least a natural isomorphism, which implies that $\iota^*$ is essentially surjective. Further, $\iota^*$ is also fully faithful upon restriction to dimension $\leq 1$ simplicial sets, and so it is an equivalence of categories.
 `\end{proof}`
 
+### Map from non-degenerate simplices
+
+In this small subsection we prove that to give a map of simplices $S_\bullet\to T_\bullet$, it suffices to give a map $S_\bullet^{nd}\to T_\bullet$ which respects face maps, where $S_\bullet^{nd}$ is the subset of $S_\bullet$ consisting only of non-degenerate simplices. We prove this claim below.
+
+>[!lem] Simplicial map from map on non-degenerate simplices
+>Let $\varphi:S_\bullet^{nd}\to T_\bullet$ be a map of simplices such that for any non-degenerate $n$-simplex $\sigma$, and any face map $\delta_i^n$, if $\sigma\cdot \delta_i^n = \sigma'\cdot \alpha$, where $\sigma'\cdot \alpha$ is the unique factorization of $\sigma\cdot \delta_i^n$ as a non-degenerate simplex and an epimorphism, then $\varphi(\sigma)\cdot \delta_i^n = \varphi(\sigma')\cdot \alpha$. Then $\varphi$ extends uniquely to a map of simplicial sets $H:S_\bullet\to T_\bullet$.
+
+^f585d6
+
+`\begin{proof}`
+First, let $f,g:S_\bullet\to T_\bullet$ such that $f(\sigma) = g(\sigma)$ for any non-degenerate simplex $\sigma$. Then if $\tau$ is an $n$-simplex in $S_\bullet$, by [[Quasi-Categories Preliminaries#^88170c]] we have a unique epimorphism $\alpha:[n]\to [m]$ and a non-degenerate $m$-simplex $\sigma$ such that $\tau = \sigma\cdot \alpha$. Then by assumption $f(\tau) = f(\sigma)\cdot \alpha = g(\sigma)\cdot \alpha = g(\tau)$.
+
+Next, let $\varphi:S_\bullet^{nd}\to T_\bullet$ be a map as described in the problem statement. Let $\tau$ be an $n$-simplex in $S_\bullet$ with unique factorization $\tau = \sigma\cdot \alpha$. Define $H:S_\bullet\to T_\bullet$ by $H(\sigma\cdot \alpha) = h(\sigma)\cdot \alpha$. Since the factorization is unique this definition is well-posed, so we need only show that it gives a map of simplicial sets. Note that if $\eta_i^{n}$ is a degeneracy, then $\tau \cdot \eta_i^{n} = \sigma\cdot (\alpha\circ \eta_i^{n})$ is the unique factorization, so $H(\tau\cdot \eta_i^{n}) = H(\tau)\cdot \eta_i^{n}$ by definition.
+
+Next, consider a face map $\delta_i^n$. Then $\alpha\circ \delta_i^n$ is either itself surjective (because $\delta_i^n$ cancels with some term), in which case the claim holds, or it is equal to $\delta_j^m\circ \beta$ where $\beta:[n]\to [m-1]$ is surjective. Then $H(\tau\cdot \delta_i^n) = H(\sigma\cdot \delta_j^m)\cdot\beta$ from our previous work. Thus, it suffices to show $H(\sigma\cdot \delta_j^m) = \varphi(\sigma)\cdot\delta_j^m$. Factor $\sigma\cdot\delta_j^m$ as $\sigma'\cdot \alpha'$ for some non-degenerate $k$-simplex $\sigma'$ and some surjective $\alpha':[m-1]\to [k]$, necessarily unique. Then by assumption we have that $\varphi(\sigma)\cdot \delta_j^m = \varphi(\sigma')\cdot \alpha'$. It follows that 
+$$H(\sigma \cdot\delta_j^m) = H(\sigma'\cdot\alpha) = \varphi(\sigma')\cdot \alpha = \varphi(\sigma)\cdot \delta_j^m$$
+as desired.
+`\end{proof}`
 
 #### References
 
